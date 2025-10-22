@@ -1,4 +1,4 @@
-import { Home, User, Users, Settings, BookOpen, Calendar, FileText, BarChart, CalendarCheck, MessageCircle } from "lucide-react";
+import { Home, User, Users, Settings, BookOpen, Calendar, FileText, LineChart, CalendarCheck, MessageCircle } from "lucide-react";
 import { DashboardStats } from "@/types";
 
 export const tabs = [
@@ -47,7 +47,7 @@ export const tabs = [
   {
     name: "Resultados",
     value: "resultados",
-    icon: BarChart, // gráfico de barras
+    icon: LineChart, // Cambiado de BarChart a LineChart
      path: "/dashboard"
   },
   {

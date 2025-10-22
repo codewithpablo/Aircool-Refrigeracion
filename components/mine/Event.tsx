@@ -24,8 +24,10 @@ const Event = () => {
         <div className="mt-5 w-full aspect-video bg-muted rounded-xl" />
       </CardContent>
       <CardFooter className="mt-6">
-        <Button className="/blocks">
-          Explore Blocks <ArrowRight />
+        <Button asChild>
+          <a href="/blocks">
+            Explore Blocks <ArrowRight />
+          </a>
         </Button>
       </CardFooter>
     </Card>
