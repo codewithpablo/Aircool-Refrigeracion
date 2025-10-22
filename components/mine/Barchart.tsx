@@ -55,11 +55,11 @@ const BarChart = () => {
         text: "Asistencia de alumnos",
         font: {
           size: 18,
-          weight: "light",
+          weight: "normal", // Cambiado de "light" a "normal" para coincidir con los valores de peso de fuente válidos
         },
       },
       tooltip: {
-        mode: "index",
+        mode: "index" as const,
         intersect: false,
       },
     },
