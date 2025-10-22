@@ -137,7 +137,7 @@ export default function FinanceLineChart({
       title: {
         display: true,
         text: "Finanzas de la Universidad - Gastos e Inversiones",
-        font: { size: 16, weight: "600" },
+        font: { size: 16, weight: "bold" },
       },
     },
     scales: {
@@ -146,7 +146,6 @@ export default function FinanceLineChart({
         ticks: { maxRotation: 0, autoSkip: true },
       },
       y: {
-        grid: { borderDash: [4, 4] },
         ticks: {
           callback: (value) => {
             const num = Number(value);
