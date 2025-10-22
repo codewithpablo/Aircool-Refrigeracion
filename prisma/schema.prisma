@@ -1,0 +1,122 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin{
+  id        Int      @id @default(autoincrement())
+  username    String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Sex{
+  MALE
+  FEMALE
+}
+
+model Student{
+    id       Int      @id @default(autoincrement())
+    username String   @unique
+    firstName String
+    lastName  String
+    email    String?   @unique
+    phone    String?   @unique
+    address  String?
+    image    String?
+    bloodType String?
+    sex Sex
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    parentId Int?
+    parent Parent? @relation(fields: [parentId], references: [id])
+}
+
+model  Teacher{
+    id       Int      @id @default(autoincrement())
+    username String   @unique
+    firstName String
+    lastName  String
+    email    String?   @unique
+    phone    String?   @unique
+    address  String?
+    image    String?
+    bloodType String?
+    sex Sex
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    subjects Subject[]
+    lessons Lessson[]
+    classes Class[]
+}
+ model Parent{
+   id       Int      @id @default(autoincrement())
+    username String   @unique
+    firstName String
+    lastName  String
+    email    String?   @unique
+    phone    String?   @unique
+    address  String?
+     createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    students Student[]
+ }
+// model Grade{}
+
+model Class{
+    id       Int      @id @default(autoincrement())
+    name String @unique
+    capacity Int
+
+    superviserId Int
+    superviser Teacher @relation(fields: [superviserId], references: [id])
+    lessons Lessson[]
+}
+
+model Subject{
+    id       Int      @id @default(autoincrement())
+    name     String
+    teachers Teacher[]
+    lesssons Lessson[]
+}
+
+enum DayOfWeek{
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+
+model Lessson{
+  id       Int      @id @default(autoincrement())
+  name     String
+  day DayOfWeek
+  startTime DateTime
+  endTime DateTime
+
+  subjectId Int
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  classId Int
+  class Class @relation(fields: [classId], references: [id])
+
+  teacherId Int
+  teacher Teacher @relation(fields: [teacherId], references: [id])
+}
+// model Exam{}
+// model Assigment{}
+// model Result{}
+// model Attendance{}
+// model Events{}
+// model Announcements{}
